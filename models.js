@@ -38,3 +38,7 @@ let User = mongoose.model("User", userSchema);
 
 module.exports.Movie = Movie;
 module.exports.User = User;
+
+//
+//mongoimport --uri mongodb+srv://Miles0569:Dreamy0569@moviedatabase.aiga7.mongodb.net/myFlixDB --collection user_movies --type json --file ../Collections/User_Movies.json
+//mongo "mongodb+srv://moviedatabase.aiga7.mongodb.net/myFlixDB" --username Miles0569
