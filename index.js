@@ -80,9 +80,9 @@ app.get(
 //   res.sendFile("public/documentation.html", { root: __dirname });
 // });
 
-// app.get("/", function (req, res) {
-//   res.send("Welcome to the root of my app!");
-// });
+app.get("/", function (req, res) {
+  res.send("Welcome to the root of my app!");
+});
 // Gets the data about a single movie title, by name
 app.get(
   "/movies/:Title",

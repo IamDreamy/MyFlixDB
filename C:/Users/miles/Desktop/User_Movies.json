@@ -1,5 +1,0 @@
-{"_id":{"$oid":"5f3c407e4452acfdf6492d0b"},"Username":[{"$oid":"5f3c3c624452acfdf6492cf9"}],"FavoriteMovies":[{"$oid":"5f3c246eb3567860914d7e8b"},{"$oid":"5f3c1a0db3567860914d7e7a"}]}
-{"_id":{"$oid":"5f3c43464452acfdf6492d0c"},"Username":[{"$oid":"5f3c3c7a4452acfdf6492cfa"}],"FavoriteMovies":[{"$oid":"5f3c2456b3567860914d7e89"},{"$oid":"5f3c2416b3567860914d7e85"}]}
-{"_id":{"$oid":"5f3c43664452acfdf6492d0d"},"Username":[{"$oid":"5f3c3c914452acfdf6492cfb"}],"FavoriteMovies":[{"$oid":"5f3c2435b3567860914d7e87"},{"$oid":"5f3c23f2b3567860914d7e83"}]}
-{"_id":{"$oid":"5f3c43724452acfdf6492d0e"},"Username":[{"$oid":"5f3c3ca64452acfdf6492cfc"}],"FavoriteMovies":[{"$oid":"5f3c2406b3567860914d7e84"},{"$oid":"5f3c2456b3567860914d7e89"}]}
-{"_id":{"$oid":"5f3c43854452acfdf6492d0f"},"Username":[{"$oid":"5f3c2685b3567860914d7e8d"}],"FavoriteMovies":[{"$oid":"5f3c2427b3567860914d7e86"},{"$oid":"5f3c2416b3567860914d7e85"}]}
