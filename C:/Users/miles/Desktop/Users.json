@@ -1,5 +1,0 @@
-{"_id":{"$oid":"5f3c3c624452acfdf6492cf9"},"Username":"john123","Password":"Doit12","Email":"john@gmail.com","Bday":{"$date":"2001-03-01T00:00:00.000Z"},"user_movies":[{"$oid":"5f3c246eb3567860914d7e8b"}]}
-{"_id":{"$oid":"5f3c3c7a4452acfdf6492cfa"},"Username":"liam123","Password":"Nada1","Email":"liam@gmail.com","Bday":{"$date":"2005-05-04T00:00:00.000Z"}}
-{"_id":{"$oid":"5f3c3c914452acfdf6492cfb"},"Username":"veronica123","Password":"Afro33","Email":"veronica@gmail.com","Bday":{"$date":"1996-07-09T00:00:00.000Z"}}
-{"_id":{"$oid":"5f3c3ca64452acfdf6492cfc"},"Username":"mike123","Password":"Hunt12","Email":"mike@gmail.com","Bday":{"$date":"1990-01-01T00:00:00.000Z"}}
-{"_id":{"$oid":"5f3d8f707f6f57dce50b7d61"},"Username":"bear05","Password":"honey123","Email":"mrbear@gmail.com","Bday":{"$date":"1991-04-01T00:00:00.000Z"}}
