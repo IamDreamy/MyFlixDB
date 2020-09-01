@@ -679,11 +679,11 @@ app.use(morgan("common"));
 app.use(express.static("public"));
 
 // routes all requests for the client to 'dist' folder
-app.use("/client", express.static(path.join(__dirname, "client/dist")));
+// app.use("/client", express.static(path.join(__dirname, "client/dist")));
 // all routes to the React client
-app.get("/client/*", (req, res) => {
-  res.sendFile(path.join(__dirname, "client/dist", "index.html"));
-});
+// app.get("/client/*", (req, res) => {
+//   res.sendFile(path.join(__dirname, "client/dist", "index.html"));
+// });
 
 app.use(bodyParser.json());
 var auth = require("./auth")(app);
@@ -697,9 +697,10 @@ API methods
 */
 
 // Hit main page
-app.get("/", (req, res) => {
-  res.sendFile(path.join(__dirname, "client/dist", "index.html"));
-});
+//send message
+// app.get("/", (req, res) => {
+//   res.sendFile(path.join(__dirname, "client/dist", "index.html"));
+// });
 
 // Get all movies in db
 app.get("/movies", passport.authenticate("jwt", { session: false }), function (
