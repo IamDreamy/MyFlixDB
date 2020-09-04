@@ -86,10 +86,7 @@ app.get("/", (req, res) => {
 });
 
 // Get all movies in db
-app.get("/movies", passport.authenticate("jwt", { session: false }), function (
-  req,
-  res
-) {
+app.get("/movies", function (req, res) {
   Movies.find().then((movies) => res.status(200).json(movies));
 });
 // Get Movies by Title
