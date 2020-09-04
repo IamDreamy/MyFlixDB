@@ -42,6 +42,7 @@ CORS - Allowed origins/domains
 */
 var allowedOrigins = [
   "http://localhost:8080",
+  "http://localhost:3000",
   "http://localhost:1234",
   "https://vfa.herokuapp.com",
 ];
