@@ -4,6 +4,7 @@ import axios from "axios";
 export class MovieView extends React.Component {
   constructor() {
     super();
+    this.state = {};
   }
   render() {
     const { movie } = this.props;

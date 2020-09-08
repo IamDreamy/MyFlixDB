@@ -1,23 +1,23 @@
-import React from 'react';
-import axios from 'axios';
+import React from "react";
+import axios from "axios";
 
-import {MovieCard} from '../movie-card/movie-card';
-import {MovieView} from '../movie-view/movie-view';
-import { isNull } from 'lodash';
+import { MovieCard } from "../movie-card/movie-card";
+import { MovieView } from "../movie-view/movie-view";
+import { isNull } from "lodash";
 
 export class MainView extends React.Component {
   // One of the "hooks" available in a React Component
   constructor() {
-      super();
-      
-      this.state = {
-          movies = null,
-          selectedMovie: isNull
-      };
+    super();
+
+    this.state = {
+      movies: null,
+      selectedMovie: null,
+    };
   }
   componentDidMount() {
     axios
-      .get("<my-api-endpoint/movies>")
+      .get("https://mjh-myflixapp.herokuapp.com/movies")
       .then((response) => {
         // Assign the result to the state
         this.setState({
@@ -30,9 +30,9 @@ export class MainView extends React.Component {
   }
 
   onMovieClick(movie) {
-      this.setState({
-          selectedMovie: movie
-      });
+    this.setState({
+      selectedMovie: movie,
+    });
   }
 
   render() {
@@ -44,14 +44,19 @@ export class MainView extends React.Component {
     if (!movies) return <div className="main-view" />;
 
     return (
-        <div className="main-view">
-         {selectedMovie
-            ? <MovieView movie={selectedMovie}/>
-            : movies.map(movie => (
-              <MovieCard key={movie._id} movie={movie} onClick={movie => this.onMovieClick(movie)}/>
-            ))
-         }
-        </div>
-       );
-     }
-   }
+      <div className="main-view">
+        {selectedMovie ? (
+          <MovieView movie={selectedMovie} />
+        ) : (
+          movies.map((movie) => (
+            <MovieCard
+              key={movie._id}
+              movie={movie}
+              onClick={(movie) => this.onMovieClick(movie)}
+            />
+          ))
+        )}
+      </div>
+    );
+  }
+}
