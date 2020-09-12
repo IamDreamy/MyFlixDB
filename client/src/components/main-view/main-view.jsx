@@ -11,6 +11,7 @@ import {
   Col,
   Container,
 } from "react-bootstrap";
+import { Link } from "react-router-dom";
 // BrowserRouter component is used for implementing state-based routing
 // For Hash based routing replace BrowserRouter with HashRouter
 import { BrowserRouter as Router, Route } from "react-router-dom";
@@ -22,6 +23,7 @@ import { MovieView } from "../movie-view/movie-view";
 import { GenreView } from "../genre-view/genre-view";
 import { DirectorView } from "../director-view/director-view";
 import { ProfileView } from "../profile-view/profile-view";
+import { UpdateProfile } from "../update-profile/update-profile";
 
 export class MainView extends React.Component {
   // One of the "hooks" available in a React Component
@@ -98,15 +100,71 @@ export class MainView extends React.Component {
     return (
       <Router>
         <div className="main-view">
-          <Form>
-            <Navbar>
-              <Button variant="outline-dark" onClick={() => this.onLoggedOut()}>
-                Sign Out
-              </Button>
-            </Navbar>
-          </Form>
+          <Navbar sticky="top" expand="lg" className="mb-2 navbar-styles">
+            <Navbar.Brand className="navbar-brand">
+              <Link to={`/`}>MyFlixDB</Link>
+            </Navbar.Brand>
+            <Navbar.Toggle aria-controls="basic-navbar-nav" />
+            <Navbar.Collapse
+              className="justify-content-end"
+              id="basic-navbar-nav"
+            >
+              {!user ? (
+                <ul>
+                  <Link to={`/`}>
+                    <Button variant="link">login</Button>
+                  </Link>
+                  <Link to={`/register`}>
+                    <Button variant="link">Register</Button>
+                  </Link>
+                </ul>
+              ) : (
+                <ul>
+                  <Link to={`/`}>
+                    <Button variant="link" onClick={() => this.onLoggedOut()}>
+                      Log out
+                    </Button>
+                  </Link>
+                  <Link to={`/users/`}>
+                    <Button variant="link">Account</Button>
+                  </Link>
+                  <Link to={`/`}>
+                    <Button variant="link">Movies</Button>
+                  </Link>
+                  <Link to={`/about`}>
+                    <Button variant="link">About</Button>
+                  </Link>
+                  <Link to={`/contact`}>
+                    <Button variant="link">Contact</Button>
+                  </Link>
+                </ul>
+              )}
+            </Navbar.Collapse>
+          </Navbar>
+
           <Route
             exact
+            path="/"
+            render={() =>
+              movies.map((m) => <MovieCard key={m._id} movie={m} />)
+            }
+          />
+
+          {/* <Route
+            exact
+            path="/"
+            render={() => {
+              if (!user)
+                return (
+                  <LoginView onLoggedIn={(user) => this.onLoggedIn(user)} />
+                );
+              return movies.map((m) => <MovieCard key={m._id} movie={m} />);
+            }}
+          /> */}
+
+          <Route path="/register" render={() => <RegistrationView />} />
+
+          <Route
             path="/movies/:movieId"
             render={({ match }) => (
               <MovieView
@@ -114,9 +172,9 @@ export class MainView extends React.Component {
               />
             )}
           />
+
           <Route
-            exact
-            path="/directors/:name"
+            path="/movies/directors/:name"
             render={({ match }) => {
               if (!movies) return <div className="main-view" />;
               return (
@@ -128,6 +186,26 @@ export class MainView extends React.Component {
                 />
               );
             }}
+          />
+
+          <Route
+            path="/movies/genres/:name"
+            render={({ match }) => {
+              if (!movies) return <div className="main-view" />;
+              return (
+                <GenreView
+                  genre={
+                    movies.find((m) => m.Genre.Name === match.params.name).Genre
+                  }
+                />
+              );
+            }}
+          />
+          <Route path="/users/update" render={() => <UpdateProfile />} />
+          <Route
+            exact
+            path="/users"
+            render={() => <ProfileView movies={movies} />}
           />
         </div>
       </Router>

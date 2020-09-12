@@ -1,5 +1,7 @@
 import React from "react";
 import axios from "axios";
+import { Link } from "react-router-dom";
+import Button from "react-bootstrap/Button";
 
 export class MovieView extends React.Component {
   constructor() {
@@ -30,7 +32,7 @@ export class MovieView extends React.Component {
         </div>
         <div className="movie-director">
           Director:
-          <Link to={`/directors/${movie.Director.Name}`}>
+          <Link to={`directors/${movie.Director.Name}`}>
             <Button variant="link">{movie.Director.Name}</Button>
           </Link>
         </div>
