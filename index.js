@@ -244,63 +244,102 @@ app.delete(
 );
 
 // Update User Account
+// app.put(
+//   "/users/:Username",
+//   passport.authenticate("jwt", { session: false }),
+//   // Validation logic
+//   [
+//     check("Username", "Username is required").isLength({ min: 5 }),
+//     check(
+//       "Username",
+//       "Username contains non alphanumeric characters - not allowed."
+//     ).isAlphanumeric(),
+//     check("Password", "Password is required").not().isEmpty(),
+//     check("Email", "Email does not appear to be valid").isEmail(),
+//   ],
+//   function (req, res) {
+//     // check the validation object for errors
+//     var errors = validationResult(req);
+
+//     if (!errors.isEmpty()) {
+//       return res.status(422).json({ errors: errors.array() });
+//     }
+//     var hashedPassword = Users.hashPassword(req.body.Password);
+//     // Check if id matches a user
+//     Users.findOne({ _id: req.params.userId })
+//       .then(function (user) {
+//         if (user) {
+//           Users.findOneAndUpdate(
+//             { Username: req.params.Username },
+//             {
+//               $set: {
+//                 // Add logic to only update what is in request body
+//                 Username: req.body.Username,
+//                 Password: hashedPassword,
+//                 Email: req.body.Email,
+//                 Birthday: req.body.Birthday,
+//               },
+//             },
+//             { new: true }
+//           )
+//             .then(function (user) {
+//               res.status(200).json(user);
+//             })
+//             .catch(function (err) {
+//               console.error(err);
+//               res.status(500).send("Error: " + err);
+//             });
+//         } else {
+//           const message = "No user matching that id in the Database!";
+//           res.status(404).send(message);
+//         }
+//       })
+//       .catch(function (err) {
+//         console.error(err);
+//         res.status(500).send("Error: " + err);
+//       });
+//   }
+// );
 app.put(
   "/users/:Username",
-  passport.authenticate("jwt", { session: false }),
-  // Validation logic
   [
     check("Username", "Username is required").isLength({ min: 5 }),
     check(
       "Username",
-      "Username contains non alphanumeric characters - not allowed."
+      "Username contains non alphanumeric character - not allowed."
     ).isAlphanumeric(),
     check("Password", "Password is required").not().isEmpty(),
     check("Email", "Email does not appear to be valid").isEmail(),
   ],
-  function (req, res) {
-    // check the validation object for errors
-    var errors = validationResult(req);
-
+  passport.authenticate("jwt", { session: false }),
+  (req, res) => {
+    let errors = validationResult(req);
     if (!errors.isEmpty()) {
       return res.status(422).json({ errors: errors.array() });
     }
-    var hashedPassword = Users.hashPassword(req.body.Password);
-    // Check if id matches a user
-    Users.findOne({ _id: req.params.userId })
-      .then(function (user) {
-        if (user) {
-          Users.findOneAndUpdate(
-            { Username: req.params.Username },
-            {
-              $set: {
-                // Add logic to only update what is in request body
-                Username: req.body.Username,
-                Password: hashedPassword,
-                Email: req.body.Email,
-                Birthday: req.body.Birthday,
-              },
-            },
-            { new: true }
-          )
-            .then(function (user) {
-              res.status(200).json(user);
-            })
-            .catch(function (err) {
-              console.error(err);
-              res.status(500).send("Error: " + err);
-            });
+    let hashedPassword = Users.hashedPassword(req.body.Password);
+    Users.findOneAndUpdate(
+      { Username: req.params.Username },
+      {
+        $set: {
+          Username: req.body.Username,
+          Password: hashedPassword,
+          Email: req.body.Email,
+          Birthday: req.body.Birthday,
+        },
+      },
+      { new: true },
+      (err, updatedUser) => {
+        if (err) {
+          console.error(err);
+          res.status(500).send("Error: " + err);
         } else {
-          const message = "No user matching that id in the Database!";
-          res.status(404).send(message);
+          res.json(updatedUser);
         }
-      })
-      .catch(function (err) {
-        console.error(err);
-        res.status(500).send("Error: " + err);
-      });
+      }
+    );
   }
 );
-
 // Add Movie to Favourites List by Movie ID
 app.post(
   "/users/:userId/favourites/:movieId/",
