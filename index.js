@@ -245,7 +245,7 @@ app.delete(
 
 // Update User Account
 app.put(
-  "/users/update/:userId",
+  "/users/:Username",
   passport.authenticate("jwt", { session: false }),
   // Validation logic
   [

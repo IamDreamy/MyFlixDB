@@ -49299,8 +49299,9 @@ var MovieCard = /*#__PURE__*/function (_React$Component) {
     value: function render() {
       var movie = this.props.movie;
       return /*#__PURE__*/_react.default.createElement(_Card.default, {
+        border: "primary",
         style: {
-          width: "16rem"
+          width: "20rem"
         }
       }, /*#__PURE__*/_react.default.createElement(_Card.default.Img, {
         variant: "top",
@@ -49419,7 +49420,7 @@ var MovieView = /*#__PURE__*/function (_React$Component) {
         to: "directors/".concat(movie.Director.Name)
       }, /*#__PURE__*/_react.default.createElement(_Button.default, {
         variant: "link"
-      }, movie.Director.Name))));
+      }, movie.Director.Name)), /*#__PURE__*/_react.default.createElement("br", null), /*#__PURE__*/_react.default.createElement("br", null), /*#__PURE__*/_react.default.createElement("br", null), /*#__PURE__*/_react.default.createElement("br", null)));
     }
   }]);
 
@@ -49483,7 +49484,7 @@ var GenreView = /*#__PURE__*/function (_React$Component) {
       if (!genre) return null;
       return /*#__PURE__*/_react.default.createElement("div", {
         className: "genre-view"
-      }, /*#__PURE__*/_react.default.createElement("div", {
+      }, /*#__PURE__*/_react.default.createElement("br", null), /*#__PURE__*/_react.default.createElement("br", null), /*#__PURE__*/_react.default.createElement("div", {
         className: "genre-name"
       }, /*#__PURE__*/_react.default.createElement("span", {
         className: "label"
@@ -49491,7 +49492,7 @@ var GenreView = /*#__PURE__*/function (_React$Component) {
         className: "value"
       }, genre.Name)), /*#__PURE__*/_react.default.createElement("div", {
         className: "genre-description"
-      }, /*#__PURE__*/_react.default.createElement("span", {
+      }, /*#__PURE__*/_react.default.createElement("br", null), /*#__PURE__*/_react.default.createElement("br", null), /*#__PURE__*/_react.default.createElement("span", {
         className: "label"
       }, "Description: "), /*#__PURE__*/_react.default.createElement("span", {
         className: "value"
@@ -49560,23 +49561,23 @@ var DirectorView = /*#__PURE__*/function (_React$Component) {
       if (!director) return null;
       return /*#__PURE__*/_react.default.createElement("div", {
         className: "director-view"
-      }, /*#__PURE__*/_react.default.createElement("div", {
+      }, /*#__PURE__*/_react.default.createElement("br", null), /*#__PURE__*/_react.default.createElement("br", null), /*#__PURE__*/_react.default.createElement("div", {
         className: "director-name"
       }, /*#__PURE__*/_react.default.createElement("span", {
         className: "label"
       }, "Name: "), /*#__PURE__*/_react.default.createElement("span", {
         className: "value"
-      }, director.Name)), /*#__PURE__*/_react.default.createElement("div", {
+      }, director.Name), /*#__PURE__*/_react.default.createElement("br", null), /*#__PURE__*/_react.default.createElement("br", null)), /*#__PURE__*/_react.default.createElement("div", {
         className: "director-bio"
       }, /*#__PURE__*/_react.default.createElement("span", {
         className: "label"
       }, "Bio: "), /*#__PURE__*/_react.default.createElement("span", {
         className: "value"
-      }, director.Bio)), /*#__PURE__*/_react.default.createElement("div", {
+      }, director.Bio), /*#__PURE__*/_react.default.createElement("br", null), /*#__PURE__*/_react.default.createElement("br", null)), /*#__PURE__*/_react.default.createElement("div", {
         className: "director-bday"
       }, /*#__PURE__*/_react.default.createElement("span", {
         className: "label"
-      }, "BirthDay: "), /*#__PURE__*/_react.default.createElement("span", {
+      }, "Birth Day: "), /*#__PURE__*/_react.default.createElement("span", {
         className: "value"
       }, director.Bday)));
     }
@@ -50261,7 +50262,7 @@ var parent = module.bundle.parent;
 if ((!parent || !parent.isParcelRequire) && typeof WebSocket !== 'undefined') {
   var hostname = "" || location.hostname;
   var protocol = location.protocol === 'https:' ? 'wss' : 'ws';
-  var ws = new WebSocket(protocol + '://' + hostname + ':' + "51485" + '/');
+  var ws = new WebSocket(protocol + '://' + hostname + ':' + "63334" + '/');
 
   ws.onmessage = function (event) {
     checkedAssets = {};
