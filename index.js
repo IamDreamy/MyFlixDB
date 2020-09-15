@@ -270,7 +270,7 @@ app.put(
       .then(function (user) {
         if (user) {
           Users.findOneAndUpdate(
-            { _id: req.params.userId },
+            { Username: req.params.Username },
             {
               $set: {
                 // Add logic to only update what is in request body
