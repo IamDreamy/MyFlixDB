@@ -325,7 +325,7 @@ app.put(
           Username: req.body.Username,
           Password: hashedPassword,
           Email: req.body.Email,
-          Birthday: req.body.Birthday,
+          Bday: req.body.Bday,
         },
       },
       { new: true },

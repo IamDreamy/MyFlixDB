@@ -25,7 +25,7 @@ export function UpdateProfile(props) {
         {
           Username: username,
           Password: password,
-          Birthday: birthday,
+          Bday: birthday,
           Email: email,
         },
         {
