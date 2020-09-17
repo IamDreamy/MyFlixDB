@@ -15,7 +15,9 @@ import { Link } from "react-router-dom";
 // BrowserRouter component is used for implementing state-based routing
 // For Hash based routing replace BrowserRouter with HashRouter
 import { BrowserRouter as Router, Route } from "react-router-dom";
+import { setMovies } from "../../actions/actions";
 
+import MoviesList from "../movies-list/movies-list";
 import { LoginView } from "../login-view/login-view";
 import { RegistrationView } from "../registration-view/registration-view";
 import { MovieCard } from "../movie-card/movie-card";
@@ -24,18 +26,20 @@ import { GenreView } from "../genre-view/genre-view";
 import { DirectorView } from "../director-view/director-view";
 import { ProfileView } from "../profile-view/profile-view";
 import { UpdateProfile } from "../update-profile/update-profile";
+import { connect } from "react-redux";
 
 export class MainView extends React.Component {
+  _isMounted = false;
   // One of the "hooks" available in a React Component
   constructor() {
     super();
 
     this.state = {
-      movies: null,
       user: null,
     };
   }
   componentDidMount() {
+    this._isMounted = true;
     let accessToken = localStorage.getItem("token");
     if (accessToken !== null) {
       this.setState({
@@ -45,6 +49,10 @@ export class MainView extends React.Component {
     }
   }
 
+  componentWillUnmount() {
+    this._isMounted = false;
+  }
+
   // onMovieClick(movie) {
   //   this.setState({
   //     selectedMovie: movie,
@@ -52,7 +60,6 @@ export class MainView extends React.Component {
   // }
 
   onLoggedIn(authData) {
-    console.log(authData);
     this.setState({
       user: authData.user.Username,
     });
@@ -76,10 +83,7 @@ export class MainView extends React.Component {
         headers: { Authorization: `Bearer ${token}` },
       })
       .then((response) => {
-        //Assign the result to the state
-        this.setState({
-          movies: response.data,
-        });
+        this.props.setMovies(response.data);
       })
       .catch(function (error) {
         console.log(error);
@@ -89,13 +93,8 @@ export class MainView extends React.Component {
   render() {
     // If the state isn't initialized, this will throw on runtime
     // before the data is initially loaded
-    const { movies, user } = this.state;
-
-    if (!user)
-      return <LoginView onLoggedIn={(user) => this.onLoggedIn(user)} />;
-
-    // Before the movies have been loaded
-    if (!movies) return <div className="main-view" />;
+    let { movies } = this.props;
+    let { user } = this.state;
 
     return (
       <Router>
@@ -112,7 +111,7 @@ export class MainView extends React.Component {
               {!user ? (
                 <ul>
                   <Link to={`/`}>
-                    <Button variant="link">login</Button>
+                    <Button variant="link">Login</Button>
                   </Link>
                   <Link to={`/register`}>
                     <Button variant="link">Register</Button>
@@ -131,12 +130,6 @@ export class MainView extends React.Component {
                   <Link to={`/`}>
                     <Button variant="link">Movies</Button>
                   </Link>
-                  <Link to={`/about`}>
-                    <Button variant="link">About</Button>
-                  </Link>
-                  <Link to={`/contact`}>
-                    <Button variant="link">Contact</Button>
-                  </Link>
                 </ul>
               )}
             </Navbar.Collapse>
@@ -150,7 +143,7 @@ export class MainView extends React.Component {
             }
           />
 
-          {/* <Route
+          <Route
             exact
             path="/"
             render={() => {
@@ -160,7 +153,7 @@ export class MainView extends React.Component {
                 );
               return movies.map((m) => <MovieCard key={m._id} movie={m} />);
             }}
-          /> */}
+          />
 
           <Route path="/register" render={() => <RegistrationView />} />
 
@@ -212,3 +205,9 @@ export class MainView extends React.Component {
     );
   }
 }
+
+let mapStateToProps = (state) => {
+  return { movies: state.movies };
+};
+
+export default connect(mapStateToProps, { setMovies })(MainView);
