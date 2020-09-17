@@ -97,7 +97,7 @@ export class MainView extends React.Component {
     let { user } = this.state;
 
     return (
-      <Router>
+      <Router basename="/client">
         <div className="main-view">
           <Navbar sticky="top" expand="lg" className="mb-2 navbar-styles">
             <Navbar.Brand className="navbar-brand">
@@ -136,6 +136,7 @@ export class MainView extends React.Component {
           </Navbar>
 
           <Route
+            basename="/client"
             exact
             path="/"
             render={() =>
@@ -144,6 +145,7 @@ export class MainView extends React.Component {
           />
 
           <Route
+            basename="/client"
             exact
             path="/"
             render={() => {
@@ -155,9 +157,14 @@ export class MainView extends React.Component {
             }}
           />
 
-          <Route path="/register" render={() => <RegistrationView />} />
+          <Route
+            basename="/client"
+            path="/register"
+            render={() => <RegistrationView />}
+          />
 
           <Route
+            basename="/client"
             path="/movies/:movieId"
             render={({ match }) => (
               <MovieView
@@ -167,6 +174,7 @@ export class MainView extends React.Component {
           />
 
           <Route
+            basename="/client"
             path="/movies/directors/:name"
             render={({ match }) => {
               if (!movies) return <div className="main-view" />;
@@ -182,6 +190,7 @@ export class MainView extends React.Component {
           />
 
           <Route
+            basename="/client"
             path="/movies/genres/:name"
             render={({ match }) => {
               if (!movies) return <div className="main-view" />;
@@ -194,8 +203,13 @@ export class MainView extends React.Component {
               );
             }}
           />
-          <Route path="/users/update" render={() => <UpdateProfile />} />
           <Route
+            basename="/client"
+            path="/users/update"
+            render={() => <UpdateProfile />}
+          />
+          <Route
+            basename="/client"
             exact
             path="/users"
             render={() => <ProfileView movies={movies} />}

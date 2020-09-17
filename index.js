@@ -13,6 +13,8 @@ const app = express();
 const Movies = Models.Movie;
 const Users = Models.User;
 
+const path = require("path");
+
 //Local connection
 // mongoose.connect('mongodb://localhost:27017/myFlixDB', {
 //   useNewUrlParser: true,
@@ -68,6 +70,7 @@ app.use(morgan("common"));
 
 // routes all requests for static files to 'public' folder
 app.use(express.static("public"));
+app.use("/client", express.static(path.join(__dirname, "client", "dist")));
 
 app.use(bodyParser.json());
 var auth = require("./auth")(app);
@@ -79,6 +82,9 @@ app.use(function (err, req, res, next) {
 /*
 API methods
 */
+app.get("/client/*", (req, res) => {
+  res.sendFile(path.join(__dirname, "client", "dist", "index.html"));
+});
 
 // Main Page of App
 app.get("/", (req, res) => {

@@ -52540,7 +52540,9 @@ var MainView = /*#__PURE__*/function (_React$Component) {
       // before the data is initially loaded
       var movies = this.props.movies;
       var user = this.state.user;
-      return /*#__PURE__*/_react.default.createElement(_reactRouterDom.BrowserRouter, null, /*#__PURE__*/_react.default.createElement("div", {
+      return /*#__PURE__*/_react.default.createElement(_reactRouterDom.BrowserRouter, {
+        basename: "/client"
+      }, /*#__PURE__*/_react.default.createElement("div", {
         className: "main-view"
       }, /*#__PURE__*/_react.default.createElement(_reactBootstrap.Navbar, {
         sticky: "top",
@@ -52579,6 +52581,7 @@ var MainView = /*#__PURE__*/function (_React$Component) {
       }, /*#__PURE__*/_react.default.createElement(_reactBootstrap.Button, {
         variant: "link"
       }, "Movies"))))), /*#__PURE__*/_react.default.createElement(_reactRouterDom.Route, {
+        basename: "/client",
         exact: true,
         path: "/",
         render: function render() {
@@ -52590,6 +52593,7 @@ var MainView = /*#__PURE__*/function (_React$Component) {
           });
         }
       }), /*#__PURE__*/_react.default.createElement(_reactRouterDom.Route, {
+        basename: "/client",
         exact: true,
         path: "/",
         render: function render() {
@@ -52606,11 +52610,13 @@ var MainView = /*#__PURE__*/function (_React$Component) {
           });
         }
       }), /*#__PURE__*/_react.default.createElement(_reactRouterDom.Route, {
+        basename: "/client",
         path: "/register",
         render: function render() {
           return /*#__PURE__*/_react.default.createElement(_registrationView.RegistrationView, null);
         }
       }), /*#__PURE__*/_react.default.createElement(_reactRouterDom.Route, {
+        basename: "/client",
         path: "/movies/:movieId",
         render: function render(_ref) {
           var match = _ref.match;
@@ -52621,6 +52627,7 @@ var MainView = /*#__PURE__*/function (_React$Component) {
           });
         }
       }), /*#__PURE__*/_react.default.createElement(_reactRouterDom.Route, {
+        basename: "/client",
         path: "/movies/directors/:name",
         render: function render(_ref2) {
           var match = _ref2.match;
@@ -52634,6 +52641,7 @@ var MainView = /*#__PURE__*/function (_React$Component) {
           });
         }
       }), /*#__PURE__*/_react.default.createElement(_reactRouterDom.Route, {
+        basename: "/client",
         path: "/movies/genres/:name",
         render: function render(_ref3) {
           var match = _ref3.match;
@@ -52647,11 +52655,13 @@ var MainView = /*#__PURE__*/function (_React$Component) {
           });
         }
       }), /*#__PURE__*/_react.default.createElement(_reactRouterDom.Route, {
+        basename: "/client",
         path: "/users/update",
         render: function render() {
           return /*#__PURE__*/_react.default.createElement(_updateProfile.UpdateProfile, null);
         }
       }), /*#__PURE__*/_react.default.createElement(_reactRouterDom.Route, {
+        basename: "/client",
         exact: true,
         path: "/users",
         render: function render() {
@@ -52826,7 +52836,7 @@ var parent = module.bundle.parent;
 if ((!parent || !parent.isParcelRequire) && typeof WebSocket !== 'undefined') {
   var hostname = "" || location.hostname;
   var protocol = location.protocol === 'https:' ? 'wss' : 'ws';
-  var ws = new WebSocket(protocol + '://' + hostname + ':' + "65138" + '/');
+  var ws = new WebSocket(protocol + '://' + hostname + ':' + "49551" + '/');
 
   ws.onmessage = function (event) {
     checkedAssets = {};
