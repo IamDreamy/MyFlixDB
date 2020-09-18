@@ -51514,6 +51514,8 @@ var _react = _interopRequireDefault(require("react"));
 
 var _reactRedux = require("react-redux");
 
+var _reactBootstrap = require("react-bootstrap");
+
 var _visibilityFilterInput = _interopRequireDefault(require("../visibility-filter-input/visibility-filter-input"));
 
 var _movieCard = require("../movie-card/movie-card");
@@ -51534,7 +51536,7 @@ function MoviesList(props) {
 
   if (visibilityFilter !== "") {
     filteredMovies = movies.filter(function (m) {
-      return m.Title.includes(visibilityFilter);
+      return m.Title.toLocaleLowerCase().includes(visibilityFilter.toLocaleLowerCase());
     });
   }
 
@@ -51545,18 +51547,22 @@ function MoviesList(props) {
     className: "movies-list"
   }, /*#__PURE__*/_react.default.createElement(_visibilityFilterInput.default, {
     visibilityFilter: visibilityFilter
-  }), filteredMovies.map(function (m) {
-    return /*#__PURE__*/_react.default.createElement(_movieCard.MovieCard, {
-      key: m._id,
-      movie: m
-    });
-  }));
+  }), /*#__PURE__*/_react.default.createElement(_reactBootstrap.Container, {
+    fluid: true
+  }, /*#__PURE__*/_react.default.createElement(_reactBootstrap.Row, null, filteredMovies.map(function (movie) {
+    return /*#__PURE__*/_react.default.createElement(_reactBootstrap.Col, {
+      key: movie._id
+    }, /*#__PURE__*/_react.default.createElement(_movieCard.MovieCard, {
+      key: movie._id,
+      movie: movie
+    }));
+  })), "\xE5"));
 }
 
 var _default = (0, _reactRedux.connect)(mapStateToProps, null)(MoviesList);
 
 exports.default = _default;
-},{"react":"../node_modules/react/index.js","react-redux":"../node_modules/react-redux/es/index.js","../visibility-filter-input/visibility-filter-input":"components/visibility-filter-input/visibility-filter-input.jsx","../movie-card/movie-card":"components/movie-card/movie-card.jsx"}],"components/login-view/login-view.jsx":[function(require,module,exports) {
+},{"react":"../node_modules/react/index.js","react-redux":"../node_modules/react-redux/es/index.js","react-bootstrap":"../node_modules/react-bootstrap/esm/index.js","../visibility-filter-input/visibility-filter-input":"components/visibility-filter-input/visibility-filter-input.jsx","../movie-card/movie-card":"components/movie-card/movie-card.jsx"}],"components/login-view/login-view.jsx":[function(require,module,exports) {
 "use strict";
 
 Object.defineProperty(exports, "__esModule", {
@@ -52588,8 +52594,7 @@ var MainView = /*#__PURE__*/function (_React$Component) {
         to: "/"
       }, /*#__PURE__*/_react.default.createElement(_reactBootstrap.Button, {
         variant: "link"
-      }, "Movies"))))), /*#__PURE__*/_react.default.createElement(_reactRouterDom.Route // basename="/client"
-      , {
+      }, "Movies"))))), /*#__PURE__*/_react.default.createElement(_reactRouterDom.Route, {
         exact: true,
         path: "/",
         render: function render() {
@@ -52598,22 +52603,16 @@ var MainView = /*#__PURE__*/function (_React$Component) {
               return _this3.onLoggedIn(user);
             }
           });
-          return;
-
-          /*#__PURE__*/
-          _react.default.createElement(_moviesList.default, {
+          return /*#__PURE__*/_react.default.createElement(_moviesList.default, {
             movies: movies
           }); // movies.map((m) => <MovieCard key={m._id} movie={m} />);
-
         }
-      }), /*#__PURE__*/_react.default.createElement(_reactRouterDom.Route // basename="/client"
-      , {
+      }), /*#__PURE__*/_react.default.createElement(_reactRouterDom.Route, {
         path: "/register",
         render: function render() {
           return /*#__PURE__*/_react.default.createElement(_registrationView.RegistrationView, null);
         }
-      }), /*#__PURE__*/_react.default.createElement(_reactRouterDom.Route // basename="/client"
-      , {
+      }), /*#__PURE__*/_react.default.createElement(_reactRouterDom.Route, {
         path: "/movies/:movieId",
         render: function render(_ref) {
           var match = _ref.match;
@@ -52623,8 +52622,7 @@ var MainView = /*#__PURE__*/function (_React$Component) {
             })
           });
         }
-      }), /*#__PURE__*/_react.default.createElement(_reactRouterDom.Route // basename="/client"
-      , {
+      }), /*#__PURE__*/_react.default.createElement(_reactRouterDom.Route, {
         path: "/movies/directors/:name",
         render: function render(_ref2) {
           var match = _ref2.match;
@@ -52637,8 +52635,7 @@ var MainView = /*#__PURE__*/function (_React$Component) {
             }).Director
           });
         }
-      }), /*#__PURE__*/_react.default.createElement(_reactRouterDom.Route // basename="/client"
-      , {
+      }), /*#__PURE__*/_react.default.createElement(_reactRouterDom.Route, {
         path: "/movies/genres/:name",
         render: function render(_ref3) {
           var match = _ref3.match;
@@ -52651,14 +52648,12 @@ var MainView = /*#__PURE__*/function (_React$Component) {
             }).Genre
           });
         }
-      }), /*#__PURE__*/_react.default.createElement(_reactRouterDom.Route // basename="/client"
-      , {
+      }), /*#__PURE__*/_react.default.createElement(_reactRouterDom.Route, {
         path: "/users/update",
         render: function render() {
           return /*#__PURE__*/_react.default.createElement(_updateProfile.UpdateProfile, null);
         }
-      }), /*#__PURE__*/_react.default.createElement(_reactRouterDom.Route // basename="/client"
-      , {
+      }), /*#__PURE__*/_react.default.createElement(_reactRouterDom.Route, {
         exact: true,
         path: "/users",
         render: function render() {
@@ -52833,7 +52828,7 @@ var parent = module.bundle.parent;
 if ((!parent || !parent.isParcelRequire) && typeof WebSocket !== 'undefined') {
   var hostname = "" || location.hostname;
   var protocol = location.protocol === 'https:' ? 'wss' : 'ws';
-  var ws = new WebSocket(protocol + '://' + hostname + ':' + "52640" + '/');
+  var ws = new WebSocket(protocol + '://' + hostname + ':' + "54646" + '/');
 
   ws.onmessage = function (event) {
     checkedAssets = {};

@@ -1,6 +1,7 @@
 import React from "react";
 import { connect } from "react-redux";
 
+import { Container, Col, Row } from "react-bootstrap";
 import VisibilityFilterInput from "../visibility-filter-input/visibility-filter-input";
 import { MovieCard } from "../movie-card/movie-card";
 
@@ -14,7 +15,9 @@ function MoviesList(props) {
   let filteredMovies = movies;
 
   if (visibilityFilter !== "") {
-    filteredMovies = movies.filter((m) => m.Title.includes(visibilityFilter));
+    filteredMovies = movies.filter((m) =>
+      m.Title.toLocaleLowerCase().includes(visibilityFilter.toLocaleLowerCase())
+    );
   }
 
   if (!movies) return <div className="main-view" />;
@@ -22,9 +25,16 @@ function MoviesList(props) {
   return (
     <div className="movies-list">
       <VisibilityFilterInput visibilityFilter={visibilityFilter} />
-      {filteredMovies.map((m) => (
-        <MovieCard key={m._id} movie={m} />
-      ))}
+      <Container fluid>
+        <Row>
+          {filteredMovies.map((movie) => (
+            <Col key={movie._id}>
+              <MovieCard key={movie._id} movie={movie} />
+            </Col>
+          ))}
+        </Row>
+        å
+      </Container>
     </div>
   );
 }

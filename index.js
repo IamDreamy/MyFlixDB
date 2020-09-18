@@ -45,7 +45,7 @@ var allowedOrigins = [
   "http://localhost:3000",
   "http://localhost:1234",
   "https://vfa.herokuapp.com",
-  "https://mjh-myflixapp.herokuapp.com/",
+  "https://mjh-myflixapp.herokuapp.com",
 ];
 
 app.use(
