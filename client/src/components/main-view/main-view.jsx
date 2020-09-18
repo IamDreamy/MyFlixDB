@@ -135,17 +135,17 @@ export class MainView extends React.Component {
             </Navbar.Collapse>
           </Navbar>
 
-          <Route
-            basename="/client"
+          {/* <Route
+            // basename="/client"
             exact
             path="/"
             render={() =>
               movies.map((m) => <MovieCard key={m._id} movie={m} />)
             }
-          />
+          /> */}
 
           <Route
-            basename="/client"
+            // basename="/client"
             exact
             path="/"
             render={() => {
@@ -153,18 +153,20 @@ export class MainView extends React.Component {
                 return (
                   <LoginView onLoggedIn={(user) => this.onLoggedIn(user)} />
                 );
-              return movies.map((m) => <MovieCard key={m._id} movie={m} />);
+              return;
+              <MoviesList movies={movies} />;
+              // movies.map((m) => <MovieCard key={m._id} movie={m} />);
             }}
           />
 
           <Route
-            basename="/client"
+            // basename="/client"
             path="/register"
             render={() => <RegistrationView />}
           />
 
           <Route
-            basename="/client"
+            // basename="/client"
             path="/movies/:movieId"
             render={({ match }) => (
               <MovieView
@@ -174,7 +176,7 @@ export class MainView extends React.Component {
           />
 
           <Route
-            basename="/client"
+            // basename="/client"
             path="/movies/directors/:name"
             render={({ match }) => {
               if (!movies) return <div className="main-view" />;
@@ -190,7 +192,7 @@ export class MainView extends React.Component {
           />
 
           <Route
-            basename="/client"
+            // basename="/client"
             path="/movies/genres/:name"
             render={({ match }) => {
               if (!movies) return <div className="main-view" />;
@@ -204,12 +206,12 @@ export class MainView extends React.Component {
             }}
           />
           <Route
-            basename="/client"
+            // basename="/client"
             path="/users/update"
             render={() => <UpdateProfile />}
           />
           <Route
-            basename="/client"
+            // basename="/client"
             exact
             path="/users"
             render={() => <ProfileView movies={movies} />}
