@@ -51773,13 +51773,21 @@ function RegistrationView(props) {
       birthday = _useState8[0],
       setBirthday = _useState8[1];
 
-  var handleSubmit = function handleSubmit() {
-    console.log(username, password, birthday, email);
-    /* Send a request to the server for authentication */
-
-    /* then call props.onLoggedIn(username) */
-
-    props.logInFunc(username);
+  var handleSubmit = function handleSubmit(e) {
+    e.preventDefault();
+    axios.post("https://chrisflix.herokuapp.com/users", {
+      Username: username,
+      Password: password,
+      Email: email,
+      Bday: birthday
+    }).then(function (response) {
+      var data = response.data;
+      alert("Your account has been created! Please login");
+      console.log(data);
+      window.open("/client", "_self");
+    }).catch(function (e) {
+      console.log("error registering the user");
+    });
   };
 
   return /*#__PURE__*/_react.default.createElement(_Form.default, {
@@ -52836,7 +52844,7 @@ var parent = module.bundle.parent;
 if ((!parent || !parent.isParcelRequire) && typeof WebSocket !== 'undefined') {
   var hostname = "" || location.hostname;
   var protocol = location.protocol === 'https:' ? 'wss' : 'ws';
-  var ws = new WebSocket(protocol + '://' + hostname + ':' + "49551" + '/');
+  var ws = new WebSocket(protocol + '://' + hostname + ':' + "51148" + '/');
 
   ws.onmessage = function (event) {
     checkedAssets = {};

@@ -9,11 +9,25 @@ export function RegistrationView(props) {
   const [email, setEmail] = useState("");
   const [birthday, setBirthday] = useState("");
 
-  const handleSubmit = () => {
-    console.log(username, password, birthday, email);
-    /* Send a request to the server for authentication */
-    /* then call props.onLoggedIn(username) */
-    props.logInFunc(username);
+  const handleSubmit = (e) => {
+    e.preventDefault();
+
+    axios
+      .post("https://chrisflix.herokuapp.com/users", {
+        Username: username,
+        Password: password,
+        Email: email,
+        Bday: birthday,
+      })
+      .then((response) => {
+        const data = response.data;
+        alert("Your account has been created! Please login");
+        console.log(data);
+        window.open("/client", "_self");
+      })
+      .catch((e) => {
+        console.log("error registering the user");
+      });
   };
 
   return (
