@@ -40,13 +40,13 @@ app.use(cors());
 /*
 CORS - Allowed origins/domains
 */
-var allowedOrigins = [
-  "http://localhost:8080",
-  "http://localhost:3000",
-  "http://localhost:1234",
-  "https://vfa.herokuapp.com",
-  "https://mjh-myflixapp.herokuapp.com",
-];
+// var allowedOrigins = [
+//   "http://localhost:8080",
+//   "http://localhost:3000",
+//   "http://localhost:1234",
+//   "https://vfa.herokuapp.com",
+//   "https://mjh-myflixapp.herokuapp.com",
+// ];
 
 app.use(
   cors({
@@ -75,7 +75,7 @@ app.get("/client/*", (req, res) => {
 });
 
 app.use(bodyParser.json());
-var auth = require("./auth")(app);
+// let auth = require("./auth")(app);
 app.use(function (err, req, res, next) {
   console.error(err.stack);
   res.status(500).send("Something broke!");

@@ -51568,6 +51568,7 @@ function _interopRequireDefault(obj) { return obj && obj.__esModule ? obj : { de
 // }
 // export default connect(mapStateToProps, null)(MoviesList);
 // import "./movies-list.scss";
+//n
 var mapStateToProps = function mapStateToProps(state) {
   var visibilityFilter = state.visibilityFilter;
   return {
@@ -51602,7 +51603,7 @@ function MoviesList(props) {
       key: movie._id,
       movie: movie
     }));
-  })), "\xE5"));
+  }))));
 }
 
 var _default = (0, _reactRedux.connect)(mapStateToProps)(MoviesList);
@@ -52871,7 +52872,7 @@ var parent = module.bundle.parent;
 if ((!parent || !parent.isParcelRequire) && typeof WebSocket !== 'undefined') {
   var hostname = "" || location.hostname;
   var protocol = location.protocol === 'https:' ? 'wss' : 'ws';
-  var ws = new WebSocket(protocol + '://' + hostname + ':' + "59092" + '/');
+  var ws = new WebSocket(protocol + '://' + hostname + ':' + "60920" + '/');
 
   ws.onmessage = function (event) {
     checkedAssets = {};

@@ -80,7 +80,6 @@ function MoviesList(props) {
             </Col>
           ))}
         </Row>
-        å
       </Container>
     </div>
   );
