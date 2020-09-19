@@ -51349,7 +51349,8 @@ Object.defineProperty(exports, "__esModule", {
 });
 exports.setMovies = setMovies;
 exports.setFilter = setFilter;
-exports.SET_FILTER = exports.SET_MOVIES = void 0;
+exports.setUsername = setUsername;
+exports.SET_USERNAME = exports.SET_FILTER = exports.SET_MOVIES = void 0;
 
 var _propTypes = require("prop-types");
 
@@ -51357,6 +51358,8 @@ var SET_MOVIES = "SET_MOVIES";
 exports.SET_MOVIES = SET_MOVIES;
 var SET_FILTER = "SET_FILTER";
 exports.SET_FILTER = SET_FILTER;
+var SET_USERNAME = "SET_USERNAME";
+exports.SET_USERNAME = SET_USERNAME;
 
 function setMovies(value) {
   return {
@@ -51368,6 +51371,13 @@ function setMovies(value) {
 function setFilter(value) {
   return {
     type: SET_FILTER,
+    value: value
+  };
+}
+
+function setUsername(value) {
+  return {
+    type: SET_USERNAME,
     value: value
   };
 } // this is pseudo code, it's just a draft of our app's state
@@ -52462,8 +52472,6 @@ var _loginView = require("../login-view/login-view");
 
 var _registrationView = require("../registration-view/registration-view");
 
-var _movieCard = require("../movie-card/movie-card");
-
 var _movieView = require("../movie-view/movie-view");
 
 var _genreView = require("../genre-view/genre-view");
@@ -52530,9 +52538,7 @@ var MainView = /*#__PURE__*/function (_React$Component) {
       var accessToken = localStorage.getItem("token");
 
       if (accessToken !== null) {
-        this.setState({
-          user: localStorage.getItem("user")
-        });
+        this.props.setUsername(localStorage.getItem("user"));
         this.getMovies(accessToken);
       }
     }
@@ -52602,7 +52608,7 @@ var MainView = /*#__PURE__*/function (_React$Component) {
         className: "navbar-brand"
       }, /*#__PURE__*/_react.default.createElement(_reactRouterDom.Link, {
         to: "/"
-      }, "MyFlixDB")), /*#__PURE__*/_react.default.createElement(_reactBootstrap.Navbar.Toggle, {
+      }, "HammockWebDev Movies:")), /*#__PURE__*/_react.default.createElement(_reactBootstrap.Navbar.Toggle, {
         "aria-controls": "basic-navbar-nav"
       }), /*#__PURE__*/_react.default.createElement(_reactBootstrap.Navbar.Collapse, {
         className: "justify-content-end",
@@ -52713,11 +52719,12 @@ var mapStateToProps = function mapStateToProps(state) {
 };
 
 var _default = (0, _reactRedux.connect)(mapStateToProps, {
-  setMovies: _actions.setMovies
+  setMovies: _actions.setMovies,
+  setUsername: _actions.setUsername
 })(MainView);
 
 exports.default = _default;
-},{"react":"../node_modules/react/index.js","axios":"../node_modules/axios/index.js","react-bootstrap":"../node_modules/react-bootstrap/esm/index.js","react-router-dom":"../node_modules/react-router-dom/esm/react-router-dom.js","../../actions/actions":"actions/actions.js","../movies-list/movies-list":"components/movies-list/movies-list.jsx","../login-view/login-view":"components/login-view/login-view.jsx","../registration-view/registration-view":"components/registration-view/registration-view.jsx","../movie-card/movie-card":"components/movie-card/movie-card.jsx","../movie-view/movie-view":"components/movie-view/movie-view.jsx","../genre-view/genre-view":"components/genre-view/genre-view.jsx","../director-view/director-view":"components/director-view/director-view.jsx","../profile-view/profile-view":"components/profile-view/profile-view.jsx","../update-profile/update-profile":"components/update-profile/update-profile.jsx","react-redux":"../node_modules/react-redux/es/index.js"}],"reducers/reducers.js":[function(require,module,exports) {
+},{"react":"../node_modules/react/index.js","axios":"../node_modules/axios/index.js","react-bootstrap":"../node_modules/react-bootstrap/esm/index.js","react-router-dom":"../node_modules/react-router-dom/esm/react-router-dom.js","../../actions/actions":"actions/actions.js","../movies-list/movies-list":"components/movies-list/movies-list.jsx","../login-view/login-view":"components/login-view/login-view.jsx","../registration-view/registration-view":"components/registration-view/registration-view.jsx","../movie-view/movie-view":"components/movie-view/movie-view.jsx","../genre-view/genre-view":"components/genre-view/genre-view.jsx","../director-view/director-view":"components/director-view/director-view.jsx","../profile-view/profile-view":"components/profile-view/profile-view.jsx","../update-profile/update-profile":"components/update-profile/update-profile.jsx","react-redux":"../node_modules/react-redux/es/index.js"}],"reducers/reducers.js":[function(require,module,exports) {
 "use strict";
 
 Object.defineProperty(exports, "__esModule", {
@@ -52864,7 +52871,7 @@ var parent = module.bundle.parent;
 if ((!parent || !parent.isParcelRequire) && typeof WebSocket !== 'undefined') {
   var hostname = "" || location.hostname;
   var protocol = location.protocol === 'https:' ? 'wss' : 'ws';
-  var ws = new WebSocket(protocol + '://' + hostname + ':' + "56032" + '/');
+  var ws = new WebSocket(protocol + '://' + hostname + ':' + "59092" + '/');
 
   ws.onmessage = function (event) {
     checkedAssets = {};
